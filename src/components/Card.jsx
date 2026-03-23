@@ -11,24 +11,28 @@ const projects = [
   { title: "John Taylor", description:"Lorem Lorem Lorem lorem", color: "#43e97b" },
 ]
 
-function Card({ i, title, description, progress, range, targetScale, setActiveProject, activeProject }) {
+function Card({ i, title, description, progress, range, targetScale, setActiveProject, activeProject, cardScale }) {
     const scale = useTransform(progress, range, [1, targetScale])
     useMotionValueEvent(progress, "change", (latest) => {
-      console.log('latest:', latest, 'range[0]:', range[0], 'i:', i)
       
   if (latest >= range[0] && latest <= range[1]) {
     setActiveProject(i)
     } else if (latest <= range[0] && i === 0) {
     setActiveProject(null)
-  }  
+  }  console.log('cardScale:', cardScale, 'i:', i)
+
 })
   return (
     <div className="card-container">
       <motion.div
         className="card"
-        style={{ scale, top: `calc(-4vh + ${i * 40 + 320}px)`, boxShadow: activeProject === i ? `inset 0 0 20px 1px ${projects[i].color}` : 'none'
+        style={{ top: `calc(-4vh + ${i * 30 + 320}px)`,
+        boxShadow: activeProject === i ? `inset 0 0 40px 2px ${projects[i].color}20` : 'none',
+        border: activeProject === i ? `0.1px solid ${projects[i].color}` : '1px solid rgba(255,255,255,0.15)',
+        scale: cardScale
+        
  }}>  
-        <div className="card-dot"></div>
+         <div className="card-dot"></div>
         <h2>{title}</h2>
         <p>{description}</p>
       </motion.div>
