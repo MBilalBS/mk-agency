@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { useEffect, useRef, useState } from 'react'
 import { Canvas, extend, useThree, useFrame } from '@react-three/fiber'
-import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei'
+import { useGLTF, useTexture, Environment, Lightformer, Text, RoundedBox } from '@react-three/drei'
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier'
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline'
 import badgeFrontImg from '../assets/badge1.png'
@@ -102,19 +102,27 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
         </RigidBody>
         <RigidBody position={[2, 0, 0]} ref={card} {...segmentProps} type={dragged ? 'kinematicPosition' : 'dynamic'}>
           <CuboidCollider args={[0.8, 1.125, 0.01]} />
-          <group
-            scale={2.25}
-            position={[0, -1.2, -0.05]}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
-            onPointerUp={(e) => (e.target.releasePointerCapture(e.pointerId), drag(false))}
-            onPointerDown={(e) => (e.target.setPointerCapture(e.pointerId), drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation()))))}>
-            <mesh geometry={nodes.card.geometry}>
-              <meshPhysicalMaterial map={badgeFront} map-anisotropy={16} clearcoat={1} clearcoatRoughness={0.15} roughness={0.3} metalness={0.5} />
-            </mesh>
-            <mesh geometry={nodes.clip.geometry} material={materials.metal} material-roughness={0.3} />
-            <mesh geometry={nodes.clamp.geometry} material={materials.metal} />
-          </group>
+         <group
+  position={[0, 0, -0.05]}
+  scale={1}
+  onPointerOver={() => hover(true)}
+  onPointerOut={() => hover(false)}
+  onPointerUp={(e) => (e.target.releasePointerCapture(e.pointerId), drag(false))}
+  onPointerDown={(e) => (e.target.setPointerCapture(e.pointerId), drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation()))))}>
+
+  <RoundedBox args={[1.6, 2.25, 0.02]} radius={0.04} smoothness={4}>
+    <meshStandardMaterial color="black" />
+  </RoundedBox>
+
+  <Text position={[0, 0.2, 0.05]} fontSize={0.12} color="white" anchorX="center" anchorY="middle">
+    Mohamed Bounouar
+  </Text>
+
+  <Text position={[0, 0.2, -0.05]} rotation={[0, Math.PI, 0]} fontSize={0.12} color="white" anchorX="center" anchorY="middle">
+    Khalil Keroui
+  </Text>
+
+</group>
         </RigidBody>
       </group>
       <mesh ref={band}>
