@@ -2,13 +2,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 import '../styles/ProjectPreview.css'
 
 const projects = [
-  { title: "Sealer", description:"AN icon of liberty", color: "#8aff47" },
-  { title: "Reccos", description:"reconnu mondialement", color: "#ff6b6b" },
-  { title: "IQ Agency", description:"l'inteligence haut de gamme", color: "#4facfe" },
-  { title: "Great Road Company", description:"la route et les moto", color: "#f7971e" },
-  { title: "Nursehub", description:"le medical a porte de main", color: "#a18cd1" },
-  { title: "Quantix", description:"la quantification de des tarif", color: "#f953c6" },
-  { title: "John Taylor", description:"Lorem Lorem Lorem lorem", color: "#43e97b" },
+  { title: "Sealer", description:"LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum", color: "#8aff47" },
+  { title: "Reccos", description:"LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum", color: "#ff6b6b" },
+  { title: "IQ Agency", description:"LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum", color: "#4facfe" },
+  { title: "Great Road Company", description:"LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum", color: "#f7971e" },
+  { title: "Nursehub", description:"LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum", color: "#a18cd1" },
+  { title: "Quantix", description:"LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum", color: "#f953c6" },
+  { title: "John Taylor", description:"LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum ", color: "#43e97b" },
 ]
 
 function ProjectPreview({activeProject}) {

@@ -15,13 +15,13 @@ useTexture.preload(badgeFrontImg)
  function Badge() {
   return (
      <div className="badge-canvas">
-    <Canvas camera={{ position: [0, 0, 13], fov: 25 }}>
+   <Canvas camera={{ position: [0, 0, 18], fov: 17 }} gl={{ alpha: true }}>
       <ambientLight intensity={Math.PI} />
       <Physics  interpolate gravity={[0, -40, 0]} timeStep={1 / 60}>
         <Band />
       </Physics>
-      <Environment background blur={0}>
-        <color attach="background" args={['black']} />
+      <Environment blur={0}>
+        <color attach="background" args={['']} />
         <Lightformer intensity={2} color="white" position={[0, -1, 5]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
         <Lightformer intensity={3} color="white" position={[-1, -1, 1]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
         <Lightformer intensity={3} color="white" position={[1, 1, 1]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
@@ -36,7 +36,7 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
   const band = useRef(), fixed = useRef(), j1 = useRef(), j2 = useRef(), j3 = useRef(), card = useRef() // prettier-ignore
   const vec = new THREE.Vector3(), ang = new THREE.Vector3(), rot = new THREE.Vector3(), dir = new THREE.Vector3() // prettier-ignore
   const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 2, linearDamping: 2 }
-  const { nodes, materials } = useGLTF('https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/5huRVDzcoDwnbgrKUo1Lzs/53b6dd7d6b4ffcdbd338fa60265949e1/tag.glb')
+
   const texture = useTexture('https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/SOT1hmCesOHxEYxL7vkoZ/c57b29c85912047c414311723320c16b/band.jpg')
   const badgeFront = useTexture(badgeFrontImg)
   const { width, height } = useThree((state) => state.size)
@@ -80,7 +80,7 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
       // Tilt it back towards the screen
       ang.copy(card.current.angvel())
       rot.copy(card.current.rotation())
-      card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z })
+      card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.15, z: ang.z })
     }
   })
 

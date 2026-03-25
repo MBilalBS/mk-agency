@@ -2,13 +2,22 @@
   position: fixed;
   bottom: 40px;
   right: 40px;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .project-preview-desc {
   position: fixed;
-  bottom: 50%;
-  right: 40px;
-  font-size: 30px;
+  top: 35%;
+  right: -50px;
+  transform: translateY(-50%);
+  font-size: 40px;
+  font-weight: 50;
+  line-height: 1.2;
+  color: #ffffff;
+  width: 400px;
 }
 
 .project-halo {

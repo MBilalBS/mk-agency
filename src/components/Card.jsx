@@ -26,11 +26,9 @@ function Card({ i, title, description, progress, range, targetScale, setActivePr
     <div className="card-container">
       <motion.div
         className="card"
-        style={{ top: `calc(-4vh + ${i * 30 + 320}px)`,
+        style={{ scale, top: `calc(-4vh + ${i * 30 + 320}px)`,
         boxShadow: activeProject === i ? `inset 0 0 40px 2px ${projects[i].color}20` : 'none',
         border: activeProject === i ? `0.1px solid ${projects[i].color}` : '1px solid rgba(255,255,255,0.15)',
-        scale: cardScale
-        
  }}>  
          <div className="card-dot"></div>
         <h2>{title}</h2>
