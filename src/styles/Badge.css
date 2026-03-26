@@ -1,10 +1,18 @@
 .badge-canvas{
-    top: 0px;
-    left: -285px;
     position: fixed;
-    width: 1050px;
-    height: 650px;
-    background: transparent;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9;
+    pointer-events: none;
+}
+
+.badge-canvas canvas {
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
 }
 
 .toggle-section {

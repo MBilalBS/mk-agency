@@ -32,3 +32,35 @@
   pointer-events: none;
   z-index: -1;
 }
+
+/* ── MOBILE UNIQUEMENT ───────────────────── */
+@media (max-width: 768px) {
+
+  .project-preview-desc {
+    top: auto;
+    bottom: calc(45vh + 150px);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 85vw;
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .project-preview-title {
+    display: none;
+  }
+
+  .project-halo {
+    bottom: auto;
+    right: auto;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.2;
+  }
+}

@@ -11,8 +11,13 @@ const projects = [
   { title: "John Taylor", description:"Lorem Lorem Lorem lorem", color: "#43e97b" },
 ]
 
+const isMobile = window.innerWidth < 768
+
 function Card({ i, title, description, progress, range, targetScale, setActiveProject, activeProject, cardScale }) {
     const scale = useTransform(progress, range, [1, targetScale])
+    const cardTop = isMobile
+      ? `calc(55vh + ${i * 18}px)`
+      : `calc(-4vh + ${i * 30 + 320}px)`
     useMotionValueEvent(progress, "change", (latest) => {
       
   if (latest >= range[0] && latest <= range[1]) {
@@ -26,7 +31,7 @@ function Card({ i, title, description, progress, range, targetScale, setActivePr
     <div className="card-container">
       <motion.div
         className="card"
-        style={{ scale, top: `calc(-4vh + ${i * 30 + 320}px)`,
+        style={{ scale, top: cardTop,
         boxShadow: activeProject === i ? `inset 0 0 40px 2px ${projects[i].color}20` : 'none',
         border: activeProject === i ? `0.1px solid ${projects[i].color}` : '1px solid rgba(255,255,255,0.15)',
  }}>  

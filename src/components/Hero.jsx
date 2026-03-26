@@ -2,17 +2,16 @@ import '../styles/Hero.css'
 import logo from '../assets/mklogo.png'
 import { useScroll, useTransform, motion } from 'framer-motion'
 import FounderToggle from './FounderToggle'
-import Badge from './Badge'
+const isMobile = window.innerWidth < 768
 
 function Hero() {
     const { scrollYProgress } = useScroll()
-    const logoY = useTransform(scrollYProgress, [0, 0.1], ['0vh', '-40vh'])
+    const logoY = useTransform(scrollYProgress, [0, 0.1], [isMobile ? '30vh' : '0vh', '-40vh'])
     const logoScale = useTransform(scrollYProgress, [0, 0.1], [1, 0.5])
     const supprText = useTransform(scrollYProgress, [0, 0.015, 1], [1, 0, 0])
 
   return (
     <div className="hero">
-        <Badge />
        <motion.img src={logo} alt="MK Logo" className="logo" style={{ y: logoY, scale: logoScale }} />
        <motion.div className='scroll-hint-wrapper'  style={{ opacity: supprText }}> 
          <span className="arrow blink">↑</span>
