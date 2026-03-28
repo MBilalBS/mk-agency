@@ -56,6 +56,22 @@
   left: 30px;
 }
 
+.badge-flip-toggle {
+  position: absolute;
+  bottom: 48px;
+  left: 68px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .badge-flip-toggle {
+    bottom: 42vh;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 .founder-name {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.3);
