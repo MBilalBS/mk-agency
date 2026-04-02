@@ -2,11 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--font-family-base);
 }
 
 body {
-  background-color: #070707;
-  color: #ffffff;
-  font-family: sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
 }
-

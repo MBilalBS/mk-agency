@@ -4,11 +4,11 @@ import Card from './Card'
 import { i } from 'framer-motion/client'
 
 const projects = [
-  { title: "Sealer", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " },
-  { title: "Reccos", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod" },
-  { title: "IQ Agency", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod" },
-  { title: "Great Road Company", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod" },
-  { title: "Nursehub", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod" },
+  { title: "Sealer", description: "Courte description de Sealer" },
+  { title: "Reccos", description: "Courte description de Reccos" },
+  { title: "IQ Agency", description: "Courte description de IQ Agency" },
+  { title: "Great Road Company", description: "Courte description de Great Road Company" },
+  { title: "Nursehub", description: "Courte description de Nursehub" },
   { title: "Quantix", description: "Courte description de Quantix" },
   { title: "John Taylor", description: "Courte description de John Taylor" },
 ]

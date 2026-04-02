@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import '../styles/FounderToggle.css'
+import { fm } from '../tokens/tokens.js'
 
 const founders = [
   {
@@ -22,17 +23,15 @@ function FounderToggle() {
   return (
     <div className="founder-toggle">
       <div className="toggle" onClick={() => setIsRight(!isRight)}>
-        <div className={`toggle-thumb ${isRight ? 'right' : ''}`}></div>
+        <div className={`toggle-thumb ${isRight ? 'right' : ''}`} />
       </div>
 
       <AnimatePresence mode="wait">
         <motion.div
           key={founder.name}
           className="founder-info"
-          initial={{ opacity: 0, y: -10 }} // état de départ
-          animate={{ opacity: 1, y: 0 }} // état final
-          exit={{ opacity: 0, y: -10 }} // état de sortie
-          transition={{ duration: 0.3 }} // vitesse
+          {...fm.fadeSlideUp}
+          transition={fm.transition.normal}
         >
           <p className="founder-name">{founder.name}</p>
           <p className="founder-role">{founder.role}</p>

@@ -6,17 +6,14 @@ import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier'
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline'
 import '../styles/Badge.css'
+import { isMobile, layout } from '../tokens/tokens.js'
 
 extend({ MeshLineGeometry, MeshLineMaterial })
 
 useGLTF.preload('https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/5huRVDzcoDwnbgrKUo1Lzs/53b6dd7d6b4ffcdbd338fa60265949e1/tag.glb')
 useTexture.preload('https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/SOT1hmCesOHxEYxL7vkoZ/c57b29c85912047c414311723320c16b/band.jpg')
-
-// Précharge tes textures recto / verso
 useTexture.preload('/badgestyle/2.png')
 useTexture.preload('/badgestyle/3.png')
-
-const isMobile = window.innerWidth < 769
 
 function RoundedPlane({ width, height, radius = 0.06, children, ...props }) {
   const geometry = useMemo(() => {
@@ -83,10 +80,13 @@ function TouchScrollPreventer() {
   return null
 }
 
-function Badge() {
+function Badge({flipped, setFlipped}) {
   const { scrollYProgress } = useScroll()
-  const badgeY = useTransform(scrollYProgress, [0, 0.08], ['0vh', '-130vh'])
-  const [flipped, setFlipped] = useState(false)
+  const badgeY = useTransform(
+    scrollYProgress,
+    [0, 0.08],
+    [layout.badge.yStart, layout.badge.yEnd]
+  )
 
   return (
     <motion.div
@@ -95,7 +95,7 @@ function Badge() {
       style={isMobile ? { y: badgeY } : undefined}
     >
       <Canvas
-        camera={{ position: [0, 0, isMobile ? 17 : 13], fov: 25 }}
+        camera={{ position: [0, 0, isMobile ? 20 : 16], fov: 25 }}
         gl={{ alpha: true, antialias: true, premultipliedAlpha: false }}
       >
         {isMobile && <TouchScrollPreventer />}
@@ -107,34 +107,10 @@ function Badge() {
         </Physics>
 
         <Environment blur={0}>
-          <Lightformer
-            intensity={2}
-            color="white"
-            position={[0, -1, 5]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={3}
-            color="white"
-            position={[-1, -1, 1]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={3}
-            color="white"
-            position={[1, 1, 1]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={10}
-            color="white"
-            position={[-10, 0, 14]}
-            rotation={[0, Math.PI / 2, Math.PI / 3]}
-            scale={[100, 10, 1]}
-          />
+          <Lightformer intensity={2}  color="white" position={[0, -1, 5]}   rotation={[0, 0, Math.PI / 3]}          scale={[100, 0.1, 1]}  />
+          <Lightformer intensity={3}  color="white" position={[-1, -1, 1]}  rotation={[0, 0, Math.PI / 3]}          scale={[100, 0.1, 1]}  />
+          <Lightformer intensity={3}  color="white" position={[1, 1, 1]}    rotation={[0, 0, Math.PI / 3]}          scale={[100, 0.1, 1]}  />
+          <Lightformer intensity={10} color="white" position={[-10, 0, 14]} rotation={[0, Math.PI / 2, Math.PI / 3]} scale={[100, 10, 1]} />
         </Environment>
       </Canvas>
 
@@ -170,30 +146,26 @@ function Band({ maxSpeed = 50, minSpeed = 10, isMobile = false, flipped = false 
     canSleep: true,
     colliders: false,
     angularDamping: 2,
-    linearDamping: 2
+    linearDamping: 2,
   }
 
   const { nodes, materials } = useGLTF(
     'https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/5huRVDzcoDwnbgrKUo1Lzs/53b6dd7d6b4ffcdbd338fa60265949e1/tag.glb'
   )
 
-  const texture = useTexture(
-    'https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/SOT1hmCesOHxEYxL7vkoZ/c57b29c85912047c414311723320c16b/band.jpg'
-  )
-
+  const texture         = useTexture('https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/SOT1hmCesOHxEYxL7vkoZ/c57b29c85912047c414311723320c16b/band.jpg')
   const frontBadgeTexture = useTexture('/badgestyle/2.png')
-  const backBadgeTexture = useTexture('/badgestyle/3.png')
+  const backBadgeTexture  = useTexture('/badgestyle/3.png')
 
   const { width, height } = useThree((state) => state.size)
 
   const [curve] = useState(
-    () =>
-      new THREE.CatmullRomCurve3([
-        new THREE.Vector3(),
-        new THREE.Vector3(),
-        new THREE.Vector3(),
-        new THREE.Vector3()
-      ])
+    () => new THREE.CatmullRomCurve3([
+      new THREE.Vector3(),
+      new THREE.Vector3(),
+      new THREE.Vector3(),
+      new THREE.Vector3(),
+    ])
   )
 
   const [dragged, drag] = useState(false)
@@ -201,17 +173,15 @@ function Band({ maxSpeed = 50, minSpeed = 10, isMobile = false, flipped = false 
 
   useEffect(() => {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping
-
     frontBadgeTexture.anisotropy = 16
-    backBadgeTexture.anisotropy = 16
-
+    backBadgeTexture.anisotropy  = 16
     frontBadgeTexture.flipY = false
-    backBadgeTexture.flipY = false
+    backBadgeTexture.flipY  = false
   }, [texture, frontBadgeTexture, backBadgeTexture])
 
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1])
-  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1])
-  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1])
+  useRopeJoint(j1,    j2, [[0, 0, 0], [0, 0, 0], 1])
+  useRopeJoint(j2,    j3, [[0, 0, 0], [0, 0, 0], 1])
   useSphericalJoint(j3, card, [[0, 0, 0], [0, 1.45, 0]])
 
   useEffect(() => {
@@ -226,13 +196,11 @@ function Band({ maxSpeed = 50, minSpeed = 10, isMobile = false, flipped = false 
       vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera)
       dir.copy(vec).sub(state.camera.position).normalize()
       vec.add(dir.multiplyScalar(state.camera.position.length()))
-
       ;[card, j1, j2, j3, fixed].forEach((ref) => ref.current?.wakeUp())
-
       card.current?.setNextKinematicTranslation({
         x: vec.x - dragged.x,
         y: vec.y - dragged.y,
-        z: vec.z - dragged.z
+        z: vec.z - dragged.z,
       })
     }
 
@@ -241,12 +209,10 @@ function Band({ maxSpeed = 50, minSpeed = 10, isMobile = false, flipped = false 
         if (!ref.current.lerped) {
           ref.current.lerped = new THREE.Vector3().copy(ref.current.translation())
         }
-
         const clampedDistance = Math.max(
           0.1,
           Math.min(1, ref.current.lerped.distanceTo(ref.current.translation()))
         )
-
         ref.current.lerped.lerp(
           ref.current.translation(),
           delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed))
@@ -262,11 +228,10 @@ function Band({ maxSpeed = 50, minSpeed = 10, isMobile = false, flipped = false 
 
       ang.copy(card.current.angvel())
       rot.copy(card.current.rotation())
-
       card.current.setAngvel({
         x: ang.x,
         y: ang.y - rot.y * 0.25,
-        z: ang.z
+        z: ang.z,
       })
     }
 
@@ -322,11 +287,8 @@ function Band({ maxSpeed = 50, minSpeed = 10, isMobile = false, flipped = false 
             }}
           >
             <group ref={cardGroup}>
-
-              {/* Base card geometry */}
               <mesh geometry={nodes.card.geometry} material={materials.card} />
 
-              {/* Recto — plane avec coins arrondis sur la face avant */}
               <RoundedPlane width={0.740} height={1.01} radius={0.06} position={[0, 0.525, 0.012]}>
                 <meshPhysicalMaterial
                   side={THREE.FrontSide}
@@ -339,7 +301,6 @@ function Band({ maxSpeed = 50, minSpeed = 10, isMobile = false, flipped = false 
                 />
               </RoundedPlane>
 
-              {/* Verso — plane avec coins arrondis sur la face arrière */}
               <RoundedPlane width={0.740} height={1.01} radius={0.06} position={[0, 0.525, -0.012]} rotation={[0, Math.PI, 0]}>
                 <meshPhysicalMaterial
                   side={THREE.FrontSide}

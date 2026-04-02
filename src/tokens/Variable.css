@@ -1,0 +1,108 @@
+:root {
+
+  /* =========================
+     COLORS
+  ========================= */
+
+  /* backgrounds */
+  --color-bg-primary: #070707;
+  --color-bg-secondary: #0a0a0a;
+
+  /* text */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.9);
+  --color-text-muted: rgba(255, 255, 255, 0.3);
+
+  /* borders / glass */
+  --color-border-light: rgba(255, 255, 255, 0.2);
+  --color-border-subtle: rgba(255, 255, 255, 0.15);
+  --color-glass: rgba(255, 255, 255, 0.1);
+  --color-glass-hover: rgba(255, 255, 255, 0.15);
+
+  /* shadows */
+  --shadow-glow: 0 0 8px rgba(255, 255, 255, 0.3);
+
+
+  /* =========================
+     SPACING (8px system)
+  ========================= */
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+
+  /* =========================
+     BORDER RADIUS
+  ========================= */
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --radius-circle: 50%;
+
+
+  /* =========================
+     TYPOGRAPHY
+  ========================= */
+
+  --font-family-base: 'Syne', sans-serif;
+
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-md: 14px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 40px;
+
+  --letter-spacing-sm: 1px;
+  --letter-spacing-md: 2px;
+  --letter-spacing-lg: 3px;
+
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+
+
+  /* =========================
+     Z-INDEX
+  ========================= */
+
+  --z-base: 1;
+  --z-canvas: 9;
+  --z-ui: 10;
+  --z-overlay: 12;
+  --z-negative: -1;
+
+
+  /* =========================
+     TRANSITIONS
+  ========================= */
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-bounce: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+
+  /* =========================
+     BLUR / EFFECTS
+  ========================= */
+
+  --blur-sm: 8px;
+  --blur-md: 16px;
+  --blur-lg: 70px;
+  --blur-xl: 100px;
+
+
+  /* =========================
+     LAYOUT
+  ========================= */
+
+  --container-max-width: 1200px;
+
+  /* mobile breakpoint */
+  --breakpoint-md: 768px;
+}
