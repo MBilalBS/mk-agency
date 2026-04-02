@@ -38,7 +38,7 @@
 
   .project-preview-desc {
     top: auto;
-    bottom: calc(45vh + 160px);
+    bottom: calc(45dvh + 160px);
     left: 0;
     right: 0;
     margin: 0 auto;

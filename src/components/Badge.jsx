@@ -88,6 +88,16 @@ function Badge({flipped, setFlipped}) {
     [layout.badge.yStart, layout.badge.yEnd]
   )
 
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on('change', (latest) => {
+      setIsVisible(latest < 0.08)
+    })
+    return unsubscribe
+  }, [scrollYProgress])
+
+
   return (
     <motion.div
       className="badge-canvas"
@@ -97,12 +107,13 @@ function Badge({flipped, setFlipped}) {
       <Canvas
         camera={{ position: [0, 0, isMobile ? 20 : 16], fov: 25 }}
         gl={{ alpha: true, antialias: true, premultipliedAlpha: false }}
+        frameloop={isVisible ? 'always' : 'never'}
       >
         {isMobile && <TouchScrollPreventer />}
 
         <ambientLight intensity={Math.PI} />
 
-        <Physics interpolate gravity={[0, -40, 0]} timeStep={1 / 60}>
+        <Physics interpolate gravity={[0, -40, 0]} timeStep={1 / 60} paused={!isVisible}>
           <Band isMobile={isMobile} flipped={flipped} />
         </Physics>
 
