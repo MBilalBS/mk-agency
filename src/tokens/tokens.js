@@ -74,22 +74,21 @@ export const fm = {
 // =========================
 // LAYOUT
 // =========================
-export const layout = {
-  // positions du logo selon device
-  logo: {
-    yStart:  { mobile: '30vh',   desktop: '0vh'    },
-    yEnd:    { mobile: '-40vh',  desktop: '-40vh'  },
-  },
 
+export const layout = {
+    // positions du logo selon device
+  logo: {
+    yStart: { mobile: '30dvh',  desktop: '0dvh'   },
+    yEnd:   { mobile: '-40dvh', desktop: '-40dvh' },
+  },
   // badge scroll out sur mobile
   badge: {
-    yStart: '0vh',
-    yEnd:   '-130vh',
+    yStart: '0dvh',
+    yEnd:   '-130dvh',
   },
-
-  // cards
+   // cards
   card: {
-    topMobile:  (i) => `calc(55vh + ${i * 18}px)`,
+    topMobile:  (i) => `calc(55dvh + ${i * 18}px)`,
     topDesktop: (i) => `calc(-4vh + ${i * 30 + 320}px)`,
   },
 }
