@@ -107,13 +107,13 @@ function Badge({flipped, setFlipped}) {
       <Canvas
         camera={{ position: [0, 0, isMobile ? 20 : 16], fov: 25 }}
         gl={{ alpha: true, antialias: true, premultipliedAlpha: false }}
-        frameloop={isVisible ? 'always' : 'never'}
+        frameloop={(isMobile && !isVisible) ? 'never' : 'always'}
       >
         {isMobile && <TouchScrollPreventer />}
 
         <ambientLight intensity={Math.PI} />
 
-        <Physics interpolate gravity={[0, -40, 0]} timeStep={1 / 60} paused={!isVisible}>
+        <Physics interpolate gravity={[0, -40, 0]} timeStep={1 / 60} paused={isMobile && !isVisible}>
           <Band isMobile={isMobile} flipped={flipped} />
         </Physics>
 

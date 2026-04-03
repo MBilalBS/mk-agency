@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100dvh;
+  height: 100svh;
   z-index: var(--z-canvas);
   pointer-events: none;
 }
@@ -68,7 +68,7 @@
 
 @media (max-width: 768px) {
   .badge-flip-toggle {
-    bottom: 42vh;
+    bottom: 42svh;
     left: 50%;
     transform: translateX(-50%);
   }

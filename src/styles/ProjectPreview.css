@@ -37,12 +37,12 @@
 @media (max-width: 768px) {
 
   .project-preview-desc {
-    top: auto;
-    bottom: calc(45dvh + 160px);
+    top: calc(55svh - 220px);
+    bottom: auto;
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: 35vw;
+    width: 85vw;
     font-size: 22px;
     text-align: center;
   }

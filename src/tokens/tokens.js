@@ -78,17 +78,17 @@ export const fm = {
 export const layout = {
     // positions du logo selon device
   logo: {
-    yStart: { mobile: '30dvh',  desktop: '0dvh'   },
-    yEnd:   { mobile: '-40dvh', desktop: '-40dvh' },
+    yStart: { mobile: '30svh',  desktop: '0svh'   },
+    yEnd:   { mobile: '-40svh', desktop: '-40svh' },
   },
   // badge scroll out sur mobile
   badge: {
-    yStart: '0dvh',
-    yEnd:   '-130dvh',
+    yStart: '0svh',
+    yEnd:   '-130svh',
   },
    // cards
   card: {
-    topMobile:  (i) => `calc(55dvh + ${i * 18}px)`,
+    topMobile:  (i) => `calc(55svh + ${i * 18}px)`,
     topDesktop: (i) => `calc(-4vh + ${i * 30 + 320}px)`,
   },
 }

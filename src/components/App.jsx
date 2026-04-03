@@ -5,6 +5,7 @@ import ProjectPreview from "./ProjectPreview";
 import ReactLenis from 'lenis/react'
 import Badge from "./Badge";
 import BadgeTabs from "./BadgeTabs";
+import BottomSheet from './BottomSheet'
 
 function App() {
     const [activeProject, setActiveProject] = useState(null)
@@ -17,7 +18,7 @@ function App() {
       <ProjectsSection setActiveProject={setActiveProject} activeProject={activeProject} />
       <ProjectPreview activeProject={activeProject}/>
       <BadgeTabs flipped={flipped} setFlipped={setFlipped} />
-      
+      <BottomSheet activeProject={activeProject} />
       </ReactLenis>
   )
 }

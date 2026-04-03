@@ -1,0 +1,105 @@
+.bottom-sheet {
+  display: none; /* caché sur desktop */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  z-index: var(--z-ui);
+  overflow: hidden;
+  padding: var(--spacing-md);
+}
+
+/* affiché uniquement sur mobile */
+@media (max-width: 768px) {
+  .bottom-sheet {
+    display: block;
+  }
+}
+
+/* la petite barre en haut du sheet */
+.sheet-handle {
+  width: 40px;
+  height: 4px;
+  background: var(--color-border-light);
+  border-radius: var(--radius-pill);
+  margin: 0 auto var(--spacing-md);
+}
+
+/* zone peek */
+.sheet-peek {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-sm);
+  transition: opacity var(--transition-normal);
+}
+
+.sheet-peek.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sheet-peek-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.sheet-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.sheet-see-more {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: var(--letter-spacing-md);
+  text-transform: uppercase;
+  font-family: var(--font-family-base);
+  transition: color var(--transition-normal);
+}
+
+.sheet-see-more:hover {
+  color: var(--color-text-primary);
+}
+
+/* zone contenu ouvert */
+.sheet-content {
+  padding: var(--spacing-xl) var(--spacing-md);
+  position: relative;
+}
+
+.sheet-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  line-height: var(--line-height-tight);
+}
+
+.sheet-description {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+}
+
+/* halo coloré en fond */
+.sheet-halo {
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius-circle);
+  filter: blur(var(--blur-xl));
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: var(--z-negative);
+}
