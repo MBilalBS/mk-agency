@@ -1,0 +1,49 @@
+.hover-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: 420px;
+  background: var(--color-bg-secondary);
+  border-left: 1px solid var(--color-border-subtle);
+  z-index: var(--z-overlay);
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  pointer-events: none; /* ne bloque pas les clics sur le reste */
+  overflow: hidden;
+}
+
+.hover-panel-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+}
+
+.hover-panel-desc {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+}
+
+.hover-panel-halo {
+  position: absolute;
+  bottom: -60px;
+  right: -60px;
+  width: 250px;
+  height: 250px;
+  border-radius: var(--radius-circle);
+  filter: blur(var(--blur-xl));
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: var(--z-negative);
+}
+
+/* caché sur mobile */
+@media (max-width: 768px) {
+  .hover-panel {
+    display: none;
+  }
+}

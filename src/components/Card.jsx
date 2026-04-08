@@ -1,21 +1,20 @@
 import { motion, useTransform, useMotionValueEvent } from "framer-motion"
+import { useRef, useEffect } from "react"
 import '../styles/Card.css'
-import { isMobile, projectColorList, fm, layout } from '../tokens/tokens.js'
+import { isMobile, projectColorList, layout } from '../tokens/tokens.js'
 
-const projects = [
-  { title: "Sealer",            description: "AN icon of liberty"              },
-  { title: "Reccos",            description: "reconnu mondialement"            },
-  { title: "IQ Agency",         description: "l'inteligence haut de gamme"    },
-  { title: "Great Road Company",description: "la route et les moto"           },
-  { title: "Nursehub",          description: "le medical a porte de main"     },
-  { title: "Quantix",           description: "la quantification de des tarif" },
-  { title: "John Taylor",       description: "Lorem Lorem Lorem lorem"        },
-]
+function Card({ i, title, description, progress, range, targetScale, setActiveProject, activeProject, cardScale, setHoveredProject, registerCardRef }) {
 
-function Card({ i, title, description, progress, range, targetScale, setActiveProject, activeProject, cardScale }) {
-  const scale = useTransform(progress, range, [1, targetScale])
-  const color = projectColorList[i]
+  const scale   = useTransform(progress, range, [1, targetScale])
+  const color   = projectColorList[i]
   const cardTop = isMobile ? layout.card.topMobile(i) : layout.card.topDesktop(i)
+  const cardRef = useRef(null)
+  const hoverTimer = useRef(null)
+
+  // on enregistre la ref de cette card dans le parent
+  useEffect(() => {
+    registerCardRef(i, cardRef)
+  }, [])
 
   useMotionValueEvent(progress, "change", (latest) => {
     if (latest >= range[0] && latest <= range[1]) {
@@ -28,6 +27,7 @@ function Card({ i, title, description, progress, range, targetScale, setActivePr
   return (
     <div className="card-container">
       <motion.div
+        ref={cardRef}
         className="card"
         style={{
           scale,

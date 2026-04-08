@@ -11,6 +11,13 @@
   margin-top: -65vh;
 }
 
+.card-hover-overlay {
+  position: absolute;
+  inset: 0; /* couvre exactement toute la surface de la card */
+  z-index: 15; /* z-index 10, au dessus du canvas qui est à 9 */
+  cursor: pointer;
+}
+
 .card {
   position: absolute;
   width: 500px;
@@ -22,7 +29,6 @@
   background: var(--color-bg-secondary);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-lg);
-  overflow: hidden;
 }
 
 @media (max-width: 768px) {
