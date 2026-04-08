@@ -1,20 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import '../styles/ProjectPreview.css'
-import { projectColorList, fm } from '../tokens/tokens.js'
-
-const projects = [
-  { title: "Sealer",             description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum" },
-  { title: "Reccos",             description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum" },
-  { title: "IQ Agency",          description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum" },
-  { title: "Great Road Company", description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum" },
-  { title: "Nursehub",           description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum" },
-  { title: "Quantix",            description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum" },
-  { title: "John Taylor",        description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum" },
-]
+import { projectColorList, fm, projectsData } from '../tokens/tokens.js'
 
 function ProjectPreview({ activeProject }) {
-  const project = activeProject !== null ? projects[activeProject] : null
-  const color = activeProject !== null ? projectColorList[activeProject] : null
+  const project = activeProject !== null ? projectsData[activeProject] : null
+  const color   = activeProject !== null ? projectColorList[activeProject] : null
 
   return (
     <AnimatePresence mode="wait">
@@ -35,7 +25,7 @@ function ProjectPreview({ activeProject }) {
             {...fm.fadeSlideUp}
             transition={fm.transition.slow}
           >
-            <p>{project.description}</p>
+            <p>{project.shortDesc}</p>
           </motion.div>
 
           <motion.div

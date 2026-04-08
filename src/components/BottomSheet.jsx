@@ -1,17 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import '../styles/BottomSheet.css'
-import { projectColorList, fm } from '../tokens/tokens.js'
-
-const projects = [
-  { title: "Sealer",             description: "Sealer s’impose comme la nouvelle norme technologique en matière de protection et de certification de produits. Née de la nécessité de protéger le savoir-faire et l'exclusivité, notre solution fusionne la puissance de la blockchain avec un système de QR codes sécurisés et inaltérables. Contrairement aux méthodes traditionnelles, Sealer attribue une identité numérique unique à chaque pièce, créant un lien physique-numérique impossible à briser ou à dupliquer. Si notre expertise prend racine dans les exigences du secteur du luxe et de la mode, notre technologie est conçue pour être universelle et s'adapte à toute industrie où l'authenticité est capitale. Plus qu'un simple outil de contrôle, Sealer offre aux marques une transparence totale sur leur chaîne de distribution et redonne au consommateur final la certitude absolue de détenir un produit original. Nous transformons la confiance en une donnée technologique infalsifiable.", logo: "./public/badgestyle/2.png" },
-  { title: "Reccos",             description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum", logo: "./public/badgestyle/2.png" },
-  { title: "IQ Agency",          description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum", logo: "./public/badgestyle/2.png" },
-  { title: "Great Road Company", description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum", logo: "./public/badgestyle/2.png" },
-  { title: "Nursehub",           description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum", logo: "./public/badgestyle/2.png" },
-  { title: "Quantix",            description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum", logo: "./public/badgestyle/2.png" },
-  { title: "John Taylor",        description: "LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum LOREM ipsum", logo: "./public/badgestyle/2.png" },
-]
+import { projectColorList, fm, projectsData } from '../tokens/tokens.js'
 
 function BottomSheet({ activeProject }) {
   const [sheetState, setSheetState] = useState('hidden')
@@ -55,7 +45,8 @@ function BottomSheet({ activeProject }) {
     }
   }
 
-  const project = activeProject !== null ? projects[activeProject] : null
+  // données du projet actif depuis le SSOT
+  const project = activeProject !== null ? projectsData[activeProject] : null
   const color   = activeProject !== null ? projectColorList[activeProject] : null
 
   const yValues = {
@@ -111,7 +102,7 @@ function BottomSheet({ activeProject }) {
         )}
       </div>
 
-      {/* OPEN — titre + description */}
+      {/* OPEN — titre + description longue depuis le SSOT */}
       <AnimatePresence>
         {sheetState === 'open' && project && (
           <motion.div
@@ -122,7 +113,7 @@ function BottomSheet({ activeProject }) {
             <h2 className="sheet-title" style={{ color }}>
               {project.title}
             </h2>
-            <p className="sheet-description">{project.description}</p>
+            <p className="sheet-description">{project.longDesc}</p>
 
             <div className="sheet-halo" style={{ background: color }} />
           </motion.div>
