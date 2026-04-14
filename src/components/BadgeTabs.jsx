@@ -1,6 +1,9 @@
-import { motion } from 'framer-motion'
+import { motion, useMotionValue } from 'framer-motion'
 import '../styles/BadgeTabs.css'
+import { useLenis } from 'lenis/react'
 import { fm } from '../tokens/tokens.js'
+import { useTransform } from 'framer-motion'
+
 
 const founders = [
   { id: 0, name: 'Mohamed Bounouar' },
@@ -8,8 +11,14 @@ const founders = [
 ]
 
 function BadgeTabs({ flipped, setFlipped }) {
+    const scrollY  = useMotionValue(0)
+    const x = useTransform(scrollY, [0, 100], ['0%', '-100%'])
+     useLenis(({ scroll }) => {
+    scrollY.set(scroll)
+  })
+
   return (
-    <div className="badge-tabs">
+    <motion.div className="badge-tabs" style={{x}}>
       {founders.map((founder) => {
         const isActive = flipped === (founder.id === 1)
         return (
@@ -24,7 +33,7 @@ function BadgeTabs({ flipped, setFlipped }) {
           </motion.button>
         )
       })}
-    </div>
+    </motion.div>
   )
 }
 

@@ -39,7 +39,7 @@
 @media (min-width: 769px) {
   .badge-tabs {
     display: flex;
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     right: auto;

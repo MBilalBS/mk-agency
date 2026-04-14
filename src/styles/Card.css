@@ -1,6 +1,6 @@
 .card-container {
   position: sticky;
-  top: 0;
+  top: -50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,14 +13,14 @@
 
 .card-hover-overlay {
   position: absolute;
-  inset: 0; /* couvre exactement toute la surface de la card */
-  z-index: 15; /* z-index 10, au dessus du canvas qui est à 9 */
+  inset: 0;
+  z-index: 15;
   cursor: pointer;
 }
 
 .card {
   position: absolute;
-  width: 500px;
+  width: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,6 +31,31 @@
   border-radius: var(--radius-lg);
 }
 
+/* numéro positionné à gauche de la card */
+.card-number {
+  position: absolute;
+  left: calc(50% - 310px); /* bord gauche de la card (50% - 250px) - 60px d'espace */
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-xs);
+}
+
+.card-number-current {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.card-number-separator {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
+.card-number-total {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
 @media (max-width: 768px) {
   .card {
     width: 90vw;
@@ -38,5 +63,9 @@
 
   .projects-container {
     margin-top: -52svh;
+  }
+
+  .card-number {
+    display: none;
   }
 }

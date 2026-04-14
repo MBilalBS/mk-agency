@@ -1,27 +1,30 @@
-.project-preview-title {
+.project-list {
   position: fixed;
-  bottom: var(--spacing-xl);
-  right: var(--spacing-xl);
-  font-size: var(--font-size-sm);
-  letter-spacing: var(--letter-spacing-lg);
-  text-transform: uppercase;
-  color: var(--color-text-primary);
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  z-index: var(--z-ui);
+  align-items: flex-end;
 }
 
-.project-preview-desc {
-  position: fixed;
-  top: 35%;
-  right: 30px;
-  transform: translateY(-50%);
-  font-size: var(--font-size-2xl);
-  font-weight: 300;
-  line-height: var(--line-height-tight);
-  color: var(--color-text-primary);
-  width: 300px;
+.project-list-item {
+  text-align: right;
+  font-weight: 600;
+  cursor: default;
+  letter-spacing: var(--letter-spacing-sm);
+  text-transform: uppercase;
+}
+
+.project-list-item.active {
+  font-weight: 700;
 }
 
 .project-halo {
   position: fixed;
+  display: none;
   bottom: -10px;
   right: 0;
   width: 100px;
@@ -32,6 +35,79 @@
   pointer-events: none;
   z-index: var(--z-negative);
 }
+
+
+
+/* Catégorie des projet */
+.project-list-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-xs);
+}
+
+.project-list-category {
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-lg);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: right;
+  height: 16px; /* hauteur fixe réservée même quand vide */
+  white-space: nowrap;
+}
+
+.project-ghost-text {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8vw;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.116);
+  pointer-events: none;
+  z-index: -1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  user-select: none;
+  text-align: center;
+  width: 80vw; /* prend toute la largeur pour centrer */
+  line-height: 0.9; /* réduit l'espace entre les lignes */
+}
+
+@media (max-width: 768px) {
+  .project-ghost-text {
+    display: none;
+  }
+}
+
+/* Compteur tout a gauche */
+.project-counter {
+  position: fixed;
+  left: 40px;
+  top: 5vh;
+  display: flex;
+  align-items:  baseline;
+  gap: var(--spacing-xs);
+  z-index: var(--z-ui);
+}
+
+.project-counter-current {
+  font-size: 100px;
+  font-weight: 200;
+  color: var(--color-text-primary);
+}
+
+.project-counter-separator {
+  font-size: 30px;
+  color: var(--color-text-muted);
+  
+}
+
+.project-counter-total {
+  font-size: 30px;
+  color: var(--color-text-muted);
+}
+
 
 /* MOBILE */
 @media (max-width: 768px) {
@@ -45,6 +121,14 @@
     width: 85vw;
     font-size: 22px;
     text-align: center;
+  }
+
+  .project-counter {
+    display: none;
+  }
+
+  .project-list {
+    display: none;
   }
 
   .project-preview-title {

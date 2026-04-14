@@ -15,6 +15,8 @@ useTexture.preload('https://assets.vercel.com/image/upload/contentful/image/e538
 useTexture.preload('/badgestyle/2.png')
 useTexture.preload('/badgestyle/3.png')
 
+
+
 function RoundedPlane({ width, height, radius = 0.06, children, ...props }) {
   const geometry = useMemo(() => {
     const s = new THREE.Shape()
@@ -84,7 +86,7 @@ function Badge({flipped, setFlipped}) {
   const { scrollYProgress } = useScroll()
   const badgeY = useTransform(
     scrollYProgress,
-    [0, 0.08],
+    [0, 0.2],
     [layout.badge.yStart, layout.badge.yEnd]
   )
 
@@ -102,7 +104,7 @@ function Badge({flipped, setFlipped}) {
     <motion.div
       className="badge-canvas"
       onDragStart={(e) => e.preventDefault()}
-      style={isMobile ? { y: badgeY } : undefined}
+      style={{ y: badgeY }}
     >
       <Canvas
         camera={{ position: [0, 0, isMobile ? 20 : 16], fov: 25 }}

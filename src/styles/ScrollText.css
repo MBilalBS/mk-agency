@@ -1,0 +1,71 @@
+.scroll-text-header {
+  --start: 50vh;
+  --space: 50vh;
+  --accent: #ffffff;
+  --dimmed: rgba(255, 255, 255, 0.15);
+
+  position: sticky;
+  top: calc((var(--count) - 10) * -1lh);
+  line-height: 1.8;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: var(--space);
+  font-size: 3vw;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+    scroll-snap-type: y proximity;
+
+}
+
+.scroll-text-section {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+    margin-top: 1vh; /* ← met en marge à la place */
+}
+
+.scroll-text-section h2 {
+  position: sticky;
+  top: calc(var(--start) - 0.5lh);
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  display: inline-block;
+  height: fit-content;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.scroll-text-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 800;
+}
+
+.scroll-text-list li {
+  /* le dégradé reste fixe dans la page */
+  /* quand le li passe au niveau du centre, il devient blanc */
+  background: linear-gradient(
+    180deg,
+    var(--dimmed) 0 calc(var(--start) - 0.5lh),
+    var(--accent) calc(var(--start) - 0.55lh) calc(var(--start) + 0.55lh),
+    var(--dimmed) calc(var(--start) + 0.5lh)
+  );
+  background-attachment: fixed; /* ← clé de l'effet */
+    scroll-snap-align: center; /* ← chaque ligne se snap au centre */
+
+  color: transparent;           /* ← le texte est transparent */
+  background-clip: text;        /* ← le background se voit à travers le texte */
+  -webkit-background-clip: text;
+}
+
+@media (max-width: 768px) {
+
+.scroll-text-header{
+      line-height: 2.5;
+}
+}

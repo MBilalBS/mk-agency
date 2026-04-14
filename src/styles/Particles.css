@@ -1,0 +1,13 @@
+particles-background {
+  position: fixed;
+  top: 400px;       /* commence à 400px du haut */
+  left: 0;
+  right: 0;
+  bottom: 0;        /* va jusqu'en bas */
+  z-index: var(--z-base);
+  pointer-events: none;
+}
+
+.particles-background canvas {
+  pointer-events: auto;
+}

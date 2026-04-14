@@ -6,17 +6,30 @@
   align-items: center;
 }
 
+/* header fixe vide — juste le bouclier avec le fond */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 75px;
+  background: var(--color-bg-primary);
+  z-index: var(--z-ui); /* juste en dessous du logo */
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+/* logo par dessus le header */
 .logo {
   width: 200px;
   position: fixed;
   left: 0;
   right: 0;
   margin: auto;
+  z-index: var(--z-overlay); /* au dessus du header */
 }
 
 .scroll-hint {
   font-size: var(--font-size-sm);
-  bottom: 32%;
   margin-top: var(--spacing-lg);
   letter-spacing: var(--letter-spacing-md);
   text-transform: uppercase;
@@ -24,7 +37,6 @@
 
 .arrow {
   font-size: var(--font-size-lg);
-  bottom: 35%;
 }
 
 .blink {
@@ -42,24 +54,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
+  position: fixed;
+  top: calc(50vh + 110px); /* 50vh = centre de l'écran, 110px = moitié du logo + espace */
+  left: 0;
+  right: 0;
+  z-index: var(--z-ui);
 }
 
 @media (max-width: 768px) {
-  .logo {
+   .logo {
     width: 130px;
-  }
-
-  .blink {
-    bottom: auto;
-  }
-
-  .arrow {
-    bottom: auto;
+    top: auto;
   }
 
   .scroll-hint-wrapper {
     position: fixed;
-    bottom: 10vh;
+    bottom: 10vh; /* go up juste en dessous du logo */
+    top: auto;
+    left: 0;
+    right: 0;
+  }
+
+  .site-header{
+    display: none;
   }
 }
