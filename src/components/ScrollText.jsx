@@ -12,6 +12,7 @@ const endings = [
 
 function ScrollText() {
   return (
+        <div className="scroll-text-wrapper"> {/* ← wrapper avec hauteur */}
     <header className="scroll-text-header" style={{ '--count': endings.length }}>
       <section className="scroll-text-section">
 
@@ -31,6 +32,7 @@ function ScrollText() {
 
       </section>
     </header>
+    </div>
   )
 }
 

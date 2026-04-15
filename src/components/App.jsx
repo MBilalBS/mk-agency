@@ -6,7 +6,9 @@ import ReactLenis from 'lenis/react'
 import Badge from "./Badge";
 import BadgeTabs from "./BadgeTabs";
 import BottomSheet from './BottomSheet';
-import ScrollText from './ScrollText'
+import ScrollText from './ScrollText';
+import Services from './Services'
+
 
 
 
@@ -23,6 +25,7 @@ function App() {
       <ProjectsSection setActiveProject={setActiveProject} activeProject={activeProject}  />
       <ProjectPreview activeProject={activeProject}/>
       <ScrollText />
+      <Services />
       </ReactLenis>
   )
 }

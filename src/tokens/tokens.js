@@ -26,6 +26,86 @@ export const projectColors = {
   johnTaylor:   "#43e97b",
 }
 
+// =========================
+// SERVICES DATA
+// =========================
+export const servicesData = [
+  {
+    number: '01',
+    title: 'Web & Digital',
+    description: "Design d'interfaces sur-mesure et développement de produits digitaux haute performance.",
+    skills: [
+      "Design d'interfaces sur-mesure",
+      'Développement React',
+      'Expériences interactives',
+      'Animations 3D',
+      'Optimisation performance',
+      'Responsive mobile',
+    ],
+  },
+  {
+    number: '02',
+    title: 'Branding & Identité',
+    description: "Création d'identités visuelles fortes qui reflètent l'essence de votre marque.",
+    skills: [
+      'Direction artistique',
+      'Création de logo',
+      'Charte graphique',
+      'Typographie',
+      'Couleurs',
+      'Guidelines de marque',
+    ],
+  },
+  {
+    number: '03',
+    title: 'Stratégie & Conseil',
+    description: "Positionnement clair et roadmap digitale pour faire grandir votre marque.",
+    skills: [
+      'Audit digital',
+      'Positionnement de marque',
+      "Définition du why",
+      'Étude de marché',
+      'Roadmap digitale',
+    ],
+  },
+  {
+    number: '04',
+    title: 'Contenu & Storytelling',
+    description: "Des mots et des récits qui donnent vie à votre marque et touchent votre audience.",
+    skills: [
+      'Copywriting',
+      'Rédaction web',
+      'Création de contenu',
+      'Tone of voice',
+      'Narration de marque',
+    ],
+  },
+  {
+    number: '05',
+    title: 'Expériences Immersives',
+    description: "Des expériences digitales qui marquent les esprits grâce à la 3D et le motion.",
+    skills: [
+      'WebGL',
+      'Three.js',
+      'Expériences 3D interactives',
+      'Motion design',
+      'Creative development',
+    ],
+  },
+  {
+    number: '06',
+    title: 'Intelligence Artificielle',
+    description: "Intégration IA haut de gamme pour automatiser, créer et innover à grande échelle.",
+    skills: [
+      'Intégration IA sur-mesure',
+      'Automatisation de workflows',
+      'Agents IA',
+      'Fine-tuning de modèles',
+      'Pipelines créatifs IA',
+      'Conseil stratégique IA',
+    ],
+  },
+]
 
 // =========================
 // PROJECTS DATA

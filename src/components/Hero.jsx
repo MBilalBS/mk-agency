@@ -9,7 +9,7 @@ function Hero() {
   // logo monte vers le header au scroll
  const logoY = useTransform(
   scrollYProgress,
-  [0, 0.1],
+  [0, 0.05],
   [
     isMobile ? layout.logo.yStart.mobile : layout.logo.yStart.desktop,
     isMobile ? layout.logo.yEnd.mobile   : layout.logo.yEnd.desktop
@@ -18,7 +18,7 @@ function Hero() {
 
   const logoScale = useTransform(
     scrollYProgress,
-    [0, 0.1], 
+    [0, 0.05], 
     isMobile ? [1, 0.5] : [1, 0.3],
   )
   const supprText = useTransform(scrollYProgress, [0, 0.01, 1], [1, 0, 0])

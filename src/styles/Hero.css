@@ -14,7 +14,7 @@
   right: 0;
   height: 75px;
   background: var(--color-bg-primary);
-  z-index: var(--z-ui); /* juste en dessous du logo */
+  z-index: 11;
   border-bottom: 1px solid var(--color-border-subtle);
 }
 

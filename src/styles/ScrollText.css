@@ -19,6 +19,13 @@
 
 }
 
+.scroll-text-wrapper {
+  /* hauteur = nombre de lignes × espace par ligne */
+  /* le sticky s'arrête quand le wrapper finit */
+  height: calc(var(--count, 0) * 5vh + 100vh);
+  position: relative;
+}
+
 .scroll-text-section {
   display: flex;
   width: 100%;

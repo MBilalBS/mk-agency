@@ -1,0 +1,140 @@
+.services-container {
+  width: 100%;
+}
+
+.service-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-2xl);
+  cursor: none; /* cache le curseur dans la section */
+}
+
+/* spotlight inversé — cercle qui suit la souris */
+.service-spotlight {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: var(--radius-circle);
+  background: #ffffff;
+  mix-blend-mode: difference; /* ← clé de l'effet inversion */
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10;
+    transition: opacity 0.2s ease; /* ← smooth à l'entrée et sortie */
+}
+
+.service-inner {
+  position: relative;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-2xl);
+  align-items: start;
+  z-index: 1;
+}
+
+/* grand numéro en fond */
+.service-bg-number {
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  transform: translateY(-50%);
+  font-size: 30vw;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.053);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  z-index: 0;
+}
+
+.service-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.service-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  letter-spacing: var(--letter-spacing-lg);
+  text-transform: uppercase;
+}
+
+.service-title {
+  font-size: 4vw;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0;
+}
+
+.service-description {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-normal);
+  max-width: 400px;
+}
+
+/* liste des compétences */
+.service-skills {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-2xl);
+}
+
+.service-skill-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.service-skill-number {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  letter-spacing: var(--letter-spacing-lg);
+  flex-shrink: 0;
+}
+
+.service-skill-name {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-sm);
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .service-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .service-title {
+    font-size: 10vw;
+  }
+
+  .service-spotlight {
+    display: none; /* pas de hover sur mobile */
+  }
+
+  .service-bg-number {
+    font-size: 50vw;
+  }
+
+  .service-section {
+    cursor: auto;
+  }
+}
