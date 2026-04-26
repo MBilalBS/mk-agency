@@ -31,7 +31,7 @@
   width: 100%;
   align-items: flex-start;
   justify-content: center;
-    margin-top: 1vh; /* ← met en marge à la place */
+    margin-top: 1vh; /* met en marge à la place */
 }
 
 .scroll-text-section h2 {
@@ -73,6 +73,13 @@
 @media (max-width: 768px) {
 
 .scroll-text-header{
-      line-height: 2.5;
+      line-height: 3.5;
+      font-size: 4.5vw;
+}
+.scroll-text-list {
+  margin-left: 10px; /* pousse la liste à droite */
+}
+.scroll-text-wrapper {
+    height: calc(var(--count, 0) * 5vh + 60vh);
 }
 }

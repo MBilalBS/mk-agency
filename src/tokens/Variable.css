@@ -23,6 +23,12 @@
   --shadow-glow: 0 0 8px rgba(255, 255, 255, 0.3);
 
 
+  --color-accent:        #C4622D;  /* brique — chaud, terreux, premium */
+  --color-accent-muted:  #7A3A18;  /* version sombre */
+  --color-accent-subtle: #2A1508;  /* très sombre pour les fonds */
+
+
+
   /* =========================
      SPACING (8px system)
   ========================= */

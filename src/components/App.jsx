@@ -8,6 +8,10 @@ import BadgeTabs from "./BadgeTabs";
 import BottomSheet from './BottomSheet';
 import ScrollText from './ScrollText';
 import Services from './Services'
+import Stats from './Stats'
+import Contact from "./Contact";
+import Footer from "./Footer";
+
 
 
 
@@ -26,6 +30,9 @@ function App() {
       <ProjectPreview activeProject={activeProject}/>
       <ScrollText />
       <Services />
+      <Stats />
+      <Contact />
+      <Footer />
       </ReactLenis>
   )
 }

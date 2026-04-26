@@ -1,20 +1,21 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useLenis } from 'lenis/react'
 import '../styles/Services.css'
 import { servicesData, fm } from '../tokens/tokens.js'
 
 function ServiceSection({ service, index }) {
-  const ref        = useRef(null)
-  const isInView   = useInView(ref, { once: true, margin: '-20% 0px' })
-  const sectionRef = useRef(null)
-  const globalMouse = useRef({ x: 0, y: 0 })
+  const ref          = useRef(null)
+  const isInView     = useInView(ref, { once: true, margin: '-20% 0px' })
+  const sectionRef   = useRef(null)
+  const spotlightRef = useRef(null)
+  const globalMouse  = useRef({ x: 0, y: 0 })
 
-  const [mousePos,   setMousePos]   = useState({ x: -999, y: -999 })
-  const [isHovering, setIsHovering] = useState(false)
+  // alterne la direction — pair à gauche, impair à droite
+  const isReversed = index % 2 !== 0
 
   const updateSpotlight = () => {
-    if (!sectionRef.current) return
+    if (!sectionRef.current || !spotlightRef.current) return
     const rect = sectionRef.current.getBoundingClientRect()
     const { x, y } = globalMouse.current
 
@@ -24,11 +25,9 @@ function ServiceSection({ service, index }) {
       y >= rect.top  &&
       y <= rect.bottom
 
-    setIsHovering(inBounds)
-    setMousePos({
-      x: x - rect.left,
-      y: y - rect.top,
-    })
+    spotlightRef.current.style.left    = `${x - rect.left}px`
+    spotlightRef.current.style.top     = `${y - rect.top}px`
+    spotlightRef.current.style.opacity = inBounds ? '1' : '0'
   }
 
   useEffect(() => {
@@ -44,18 +43,12 @@ function ServiceSection({ service, index }) {
 
   return (
     <div ref={sectionRef} className="service-section">
+      <div ref={spotlightRef} className="service-spotlight" style={{ opacity: 0 }} />
 
-      {/* toujours dans le DOM — opacity gère le fade */}
       <div
-        className="service-spotlight"
-        style={{
-          left:    mousePos.x,
-          top:     mousePos.y,
-          opacity: isHovering ? 1 : 0,
-        }}
-      />
-
-      <div ref={ref} className="service-inner">
+        ref={ref}
+        className={`service-inner ${isReversed ? 'reversed' : ''}`}
+      >
         <span className="service-bg-number">{service.number}</span>
 
         <motion.div
@@ -79,7 +72,7 @@ function ServiceSection({ service, index }) {
             <motion.li
               key={i}
               className="service-skill-item"
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: isReversed ? 20 : -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ ...fm.transition.normal, delay: 0.3 + i * 0.08 }}
             >
@@ -95,12 +88,49 @@ function ServiceSection({ service, index }) {
   )
 }
 
+function SecondaryServices() {
+  const ref     = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-10% 0px' })
+
+  return (
+    <motion.div
+      ref={ref}
+      className="services-secondary"
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={fm.transition.slow}
+    >
+      <p className="services-secondary-label">Et aussi</p>
+      <div className="services-secondary-grid">
+        {servicesData.secondary.map((service, i) => (
+          <motion.div
+            key={i}
+            className="services-secondary-item"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ ...fm.transition.normal, delay: i * 0.1 }}
+          >
+            <span className="services-secondary-number">{service.number}</span>
+            <h3 className="services-secondary-title">{service.title}</h3>
+            <ul className="services-secondary-skills">
+              {service.skills.map((skill, j) => (
+                <li key={j}>{skill}</li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  )
+}
+
 function Services() {
   return (
     <section className="services-container">
-      {servicesData.map((service, index) => (
+      {servicesData.main.map((service, index) => (
         <ServiceSection key={index} service={service} index={index} />
       ))}
+      <SecondaryServices />
     </section>
   )
 }

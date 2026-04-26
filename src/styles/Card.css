@@ -61,6 +61,10 @@
     width: 90vw;
   }
 
+  .card-container {
+    top: -300px;
+  }
+
   .projects-container {
     margin-top: -52svh;
   }

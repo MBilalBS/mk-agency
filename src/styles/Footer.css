@@ -1,0 +1,115 @@
+.footer {
+  width: 100%;
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ── Tagline ── */
+.footer-tagline {
+  font-size: var(--font-size-sm);
+  color: #C4622D;
+  letter-spacing: var(--letter-spacing-lg);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ── Grand nom ── */
+.footer-brand {
+  width: 100%;
+  overflow: hidden;
+}
+
+.footer-brand-text {
+  font-size: clamp(5rem, 20vw, 14rem);
+  font-weight: 800;
+  -webkit-text-stroke: 3px #C4622D;
+  paint-order: stroke fill;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  display: block;
+  padding: 5% 0;
+  /* étire le texte pour qu'il prenne toute la largeur */
+  width: 100%;
+  white-space: nowrap;
+}
+
+
+
+/* ── Bas du footer ── */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--spacing-xl);
+}
+
+.footer-copyright {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  letter-spacing: var(--letter-spacing-sm);
+}
+
+/* ── Navigation ── */
+.footer-nav {
+  display: flex;
+  gap: var(--spacing-xl);
+}
+
+.footer-nav-link {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  letter-spacing: var(--letter-spacing-sm);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.footer-nav-link:hover {
+  color: var(--color-text-primary);
+}
+
+/* ── Liens légaux ── */
+.footer-legal {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.footer-legal a {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  letter-spacing: var(--letter-spacing-sm);
+  transition: color 0.2s ease;
+}
+
+.footer-legal a:hover {
+  color: var(--color-text-primary);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .footer-brand-text {
+    font-size: 14vw;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+  }
+
+  .footer-nav {
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+
+  .footer-legal {
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+}
