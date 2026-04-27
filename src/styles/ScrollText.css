@@ -22,7 +22,7 @@
 .scroll-text-wrapper {
   /* hauteur = nombre de lignes × espace par ligne */
   /* le sticky s'arrête quand le wrapper finit */
-  height: calc(var(--count, 0) * 5vh + 100vh);
+  height: calc(var(--count, 0) * 5vh + dvh);
   position: relative;
 }
 
@@ -71,15 +71,23 @@
 }
 
 @media (max-width: 768px) {
+  .scroll-text-list li {
+    background: none;           /* désactive le gradient CSS */
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: rgba(255,255,255,0.15); /* valeur par défaut, le JS prend le relais */
+  }
 
-.scroll-text-header{
-      line-height: 3.5;
-      font-size: 4.5vw;
-}
-.scroll-text-list {
-  margin-left: 10px; /* pousse la liste à droite */
-}
-.scroll-text-wrapper {
+  .scroll-text-header {
+    line-height: 3.5;
+    font-size: 4.5vw;
+  }
+
+  .scroll-text-list {
+    margin-left: 10px;
+  }
+
+  .scroll-text-wrapper {
     height: calc(var(--count, 0) * 5vh + 60vh);
-}
+  }
 }

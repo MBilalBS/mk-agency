@@ -25,13 +25,13 @@ function App() {
       <Badge flipped={flipped} setFlipped={setFlipped} />
       <BadgeTabs flipped={flipped} setFlipped={setFlipped} />
       <BottomSheet activeProject={activeProject} />
-      <Hero />
-      <ProjectsSection setActiveProject={setActiveProject} activeProject={activeProject}  />
+      <div id="accueil">  <Hero />     </div>
+      <div id="projets"><ProjectsSection setActiveProject={setActiveProject} activeProject={activeProject}  /></div>
       <ProjectPreview activeProject={activeProject}/>
       <ScrollText />
-      <Services />
-      <Stats />
-      <Contact />
+      <div id="services"><Services /></div>
+      <div id="apropos"><Stats /></div>
+      <div id="contact"><Contact /></div>
       <Footer />
       </ReactLenis>
   )

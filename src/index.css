@@ -5,6 +5,11 @@
   font-family: var(--font-family-base);
 }
 
+html, body {
+  height: 100%;
+  min-height: 100dvh;
+}
+
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);

@@ -21,7 +21,7 @@ function ProjectPreview({ activeProject }) {
   <motion.div
     className="project-counter"
     animate={{
-      top: `${(activeProject / (total - 1)) * 70 + 10}vh`,
+      top: `${(activeProject / (total - 1)) * 70 + 10}dvh`,
     }}
     transition={fm.transition.fast}
   >

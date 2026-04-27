@@ -4,7 +4,7 @@
 
 .service-section {
   position: relative;
-  min-height: 100vh;
+  min-height: dvh;
   display: flex;
   align-items: center;
   padding: var(--spacing-2xl);
