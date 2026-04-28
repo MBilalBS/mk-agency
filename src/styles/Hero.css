@@ -37,6 +37,7 @@
 
 .arrow {
   font-size: var(--font-size-lg);
+  z-index: -10;
 }
 
 .blink {

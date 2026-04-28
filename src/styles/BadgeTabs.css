@@ -44,7 +44,7 @@
     top: 0;
     right: auto;
     width: 40px;
-    height: dvh;
+    height: 100dvh;
     flex-direction: column;
     border-bottom: none;
     border-right: 1px solid var(--color-border-subtle);

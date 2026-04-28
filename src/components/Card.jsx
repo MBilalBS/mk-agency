@@ -1,15 +1,12 @@
 import { motion, useTransform, useMotionValueEvent } from "framer-motion"
-import { useRef } from "react"
 import '../styles/Card.css'
-import { isMobile, projectColorList, layout, fm } from '../tokens/tokens.js'
+import { isMobile, projectColorList, layout } from '../tokens/tokens.js'
 
-function Card({ i, title, description, progress, range, targetScale, setActiveProject, activeProject, cardScale }) {
+function Card({ i, title, progress, range, targetScale, setActiveProject, activeProject, onClick }) {
 
   const scale   = useTransform(progress, range, [1, targetScale])
   const color   = projectColorList[i]
   const cardTop = isMobile ? layout.card.topMobile(i) : layout.card.topDesktop(i)
-
-  const hoverTimer = useRef(null)
 
   useMotionValueEvent(progress, "change", (latest) => {
     if (latest >= range[0] && latest <= range[1]) {
@@ -32,7 +29,9 @@ function Card({ i, title, description, progress, range, targetScale, setActivePr
       >
         <div className="card-dot" />
         <h2>{title}</h2>
-        <p>{description}</p>
+        <button className="card-btn" onClick={(e) => { e.stopPropagation(); onClick(i) }}>
+  En savoir plus
+</button>
       </motion.div>
     </div>
   )
