@@ -89,7 +89,7 @@ pointer-events: auto;
 
 .modal {
   position: fixed;
-  top: 30%;
+  top: 14%;
   left: 27%;
   z-index: 101;
   background: var(--color-bg-secondary);

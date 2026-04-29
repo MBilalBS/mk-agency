@@ -1,16 +1,15 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useScroll, useMotionValueEvent, motion, AnimatePresence } from 'framer-motion'
 import Card from './Card'
+import { projectsData } from '../tokens/tokens.js'
 
-const projects = [
-  { title: "Sealer",             description: "Plateforme de gestion de contrats intelligente. Signature électronique, suivi en temps réel et automatisation des workflows.",    tags: ["UX/UI", "Dev Web", "Branding"] },
-  { title: "Reccos",             description: "Application de recommandations personnalisées basée sur l'intelligence artificielle et les préférences utilisateurs.",             tags: ["Design", "Dev Web", "IA"]     },
-  { title: "IQ Agency",          description: "Refonte complète de l'identité visuelle et du site web d'une agence de communication parisienne.",                               tags: ["Branding", "Dev Web"]          },
-  { title: "Great Road Company", description: "Identité de marque et stratégie digitale pour une société spécialisée dans la logistique internationale.",                       tags: ["Branding", "Stratégie"]        },
-  { title: "Nursehub",           description: "Plateforme de mise en relation entre infirmiers indépendants et établissements de santé.",                                       tags: ["UX/UI", "Dev Web"]             },
-  { title: "Quantix",            description: "Dashboard analytique pour fonds d'investissement. Visualisation de données complexes en temps réel.",                            tags: ["UX/UI", "Dev Web", "Data"]     },
-  { title: "John Taylor",        description: "Site vitrine et stratégie de contenu pour un cabinet d'avocats d'affaires international.",                                       tags: ["Branding", "Dev Web"]          },
-]
+const projects = projectsData.map(p => ({
+  title:       p.title,
+  description: p.longDesc,
+  shortDesc:   p.shortDesc,
+  category:    p.category,
+  tags:        [p.category],
+}))
 
 function Modal({ project, onClose }) {
   return (
@@ -35,6 +34,7 @@ function Modal({ project, onClose }) {
             <button className="modal-close" onClick={onClose}>✕</button>
             <span className="modal-label">// Projet</span>
             <h2 className="modal-title">{project.title}</h2>
+            <p className="modal-shortdesc">{project.shortDesc}</p>
             <div className="modal-tags">
               {project.tags.map((tag, i) => (
                 <span key={i} className="modal-tag">{tag}</span>
@@ -55,8 +55,20 @@ function Modal({ project, onClose }) {
 }
 
 function ProjectsSection({ setActiveProject, activeProject }) {
-  const container = useRef(null)
+  const container    = useRef(null)
   const [modalProject, setModalProject] = useState(null)
+
+  // bloque le scroll quand la modal est ouverte
+  useEffect(() => {
+    if (modalProject) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [modalProject])
 
   const { scrollYProgress } = useScroll({
     target: container,
